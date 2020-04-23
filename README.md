@@ -1,1 +1,1 @@
-# Asp.Net-Core-MVC-Examples
+# Asp.Net-Core-MVC-Examples for students
