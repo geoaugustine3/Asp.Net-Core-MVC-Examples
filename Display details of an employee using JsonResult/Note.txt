@@ -1,0 +1,9 @@
+1) 'public string Index()' is a default 'public action method' in 'Home Controller' which calls defaults
+    view page. (this dafault view page is not directly shown in any of the projects folders).
+
+2)  A 'public action method' (eg: 'public string Details()' )in 'Home Controller' defaultly checks 
+    for the view page with same name of the calling method (here, 'Details') in these locations;
+
+     a) Views/Home/Details.cshtml
+     b) Views/Shared/Details.cshtml
+     c) Pages/Shared/Details.cshtml
