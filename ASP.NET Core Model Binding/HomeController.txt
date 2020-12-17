@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,8 @@ using EmployeeManagement.ViewModel;
 
 namespace EmployeeManagement.Controllers
 {
+    // [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private IEmployeeRepository _employeeRepository;
@@ -26,7 +28,10 @@ namespace EmployeeManagement.Controllers
          }
 
        */
-        
+
+        [Route("~/")]
+        [Route("")]
+        [Route("~/home")]
         public ViewResult Index()
         {
             var model = _employeeRepository.GetAllEmployees();
@@ -35,15 +40,32 @@ namespace EmployeeManagement.Controllers
         }
 
 
-        public ViewResult Details(int id)
+        [Route("{id?}")]
+        public ViewResult Details(int? id, string name)
         {
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(id),
+                Employee = _employeeRepository.GetEmployee(id ?? 1),
                 PageTitle = "Details"
             };
-          return View(homeDetailsViewModel);
+            return View(homeDetailsViewModel);
+
         }
+
+        [HttpGet]
+        public  ViewResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Create(Employee employee)
+        {
+           Employee newEmployee = _employeeRepository.Add(employee);
+            return RedirectToAction("details", new { id = newEmployee.Id});
+        }
+
 
     }
 }

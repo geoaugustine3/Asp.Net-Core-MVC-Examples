@@ -1,0 +1,13 @@
+
+Make sure the following client-side validation libraries are installed (Right Click <Project name> -> Add->
+Client-Side-Library->(Install the below libraries)) and loaded in the order specified in "_Layout.cshtml".
+"jquery.js" might be already installed as part of our project development. 
+
+    jquery.js
+    jquery.validate.js
+    jquery.validate.unobtrusive.js
+
+Make sure the development environment specified in "_Layout.cshtml" match with development environment
+in "launchSettings.json".
+
+Make sure browser support for JavaScript is not disabled

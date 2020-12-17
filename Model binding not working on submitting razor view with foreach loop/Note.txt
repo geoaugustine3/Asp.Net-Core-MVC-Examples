@@ -1,0 +1,6 @@
+Why did model binding fail when we use foreach loop
+
+The following is the generated HTML when we use a foreach loop. Notice the name attribute of the input 
+elements. They are not unique and there is no integer indexer, so the model binder does not know it has 
+to bind the values from these input elements to the list parameter on the controller action. This is the
+reason the list parameter on the controller action is empty. 

@@ -1,0 +1,60 @@
+using EmployeeManagement.ViewModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace EmployeeManagement.Controllers
+{
+    public class AdministrationController : Controller
+    {
+        private readonly RoleManager<IdentityRole> roleManager;
+
+        public AdministrationController(RoleManager<IdentityRole> roleManager)
+        {
+            this.roleManager = roleManager;
+        }
+
+
+        [HttpGet]
+        public IActionResult CreateRole()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
+        {
+            if (ModelState.IsValid) // Checks validation has done or not 
+            {
+                
+
+                IdentityRole identityRole = new IdentityRole()  // We just need to specify a unique role name to create a new role
+                {
+                    Name = model.RoleName
+
+                };
+
+                
+                IdentityResult result = await roleManager.CreateAsync(identityRole);  // Creates the specified role under 'Name' field in database table 'AspNetRoles'.
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("index","home");
+                }
+
+                foreach(IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description); // Pass empty string ("") as the key and adds model errors
+                }
+            }
+
+            return View(model);
+
+        }
+    }
+}

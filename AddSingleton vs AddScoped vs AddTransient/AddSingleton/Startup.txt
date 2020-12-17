@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,7 +36,9 @@ namespace EmployeeManagement
             app.UseStaticFiles();
 
             //  app.UseMvcWithDefaultRoute();
-            app.UseMvc(Routes => { Routes.MapRoute("default", "{controller}/{action}/{id?}"); });
+            app.UseMvc(Routes => { Routes.MapRoute("default", "pragim/{controller}/{action}/{id?}"); });
+
+           // app.UseMvc();
 
         /*
 app.Run(async (context) =>

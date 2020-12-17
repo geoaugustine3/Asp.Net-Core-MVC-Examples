@@ -1,0 +1,39 @@
+ [Authorize(Roles = "Administrator, User")]   // "Administrator" or "User" is authorized to access AdministrationController
+public class AdministrationController : Controller
+{
+    public ActionResult ABC()
+    {
+    }
+
+    [Authorize(Roles = "Administrator")]     // Authorize at 'AdministrationController' level is overridden here. 
+    public ActionResult XYZ()                // Only "Administrator" can access this module.
+    {
+    }
+
+    [AllowAnonymous]                        // Authorize at 'AdministrationController' level is overridden here. 
+    public ActionResult Anyone()            // Anyone can access this module, even without logging in.
+    {
+    }
+} 
+
+#############################################################
+
+[Authorize(Roles = "Administrator")]    //   Someone in both "Administrator" and "User" roles can only access this AdministrationController
+[Authorize(Roles = "User")]
+public class AdministrationController : Controller
+{
+    public ActionResult ABC()
+    {
+    }
+
+    [Authorize(Roles = "Administrator")]
+    public ActionResult XYZ()
+    {
+    }
+
+    [AllowAnonymous]
+    public ActionResult Anyone()
+    {
+    }
+}
+

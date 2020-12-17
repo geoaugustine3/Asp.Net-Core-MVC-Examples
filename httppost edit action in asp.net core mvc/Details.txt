@@ -1,0 +1,39 @@
+
+
+@model HomeDetailsViewModel
+
+
+@{
+
+    ViewBag.Title = Employee Details;
+    var photoPath = ~Images + (Model.Employee.PhotoPath  Lap1.jpg);
+}
+
+
+div class=row justify-content-center m-3
+    div class=col-sm-8
+        div class=card
+            div class=card-header
+                h1@Model.Employee.Nameh1
+            div
+
+            div class=card-body text-center
+                img class=card-img-top src=@photoPath asp-append-version=true
+
+                h4Employee ID  @Model.Employee.Idh4
+                h4Email  @Model.Employee.Emailh4
+                h4Department  @Model.Employee.Departmenth4
+
+            div
+            div class=card-footer text-center
+                a asp-controller=home asp-action=index
+                   class=btn btn-primaryBacka
+                a asp-controller=home asp-action=edit asp-route-id=@Model.Employee.Id class=btn btn-primaryEdita
+                a href=# class=btn btn-dangerDeletea
+            div
+        div
+    div
+div
+
+script src=~jsCustomScript.jsscript
+    

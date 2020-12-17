@@ -1,0 +1,3 @@
+asp-suppress-fallback-integrity="true"
+
+To run the above code your IDE should have atleast .netframework 2.2
